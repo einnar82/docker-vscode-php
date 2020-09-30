@@ -17,13 +17,11 @@ RUN apt-get update && apt-get install -y \
 	--no-install-recommends
 
 # Add the vscode debian repo
-RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-RUN mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
-RUN sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+RUN curl -o vscode.deb https://go.microsoft.com/fwlink/?LinkID=760868 
+RUN apt install ./vscode.deb
 
 RUN apt-get update && apt-get -y install \
 	apt-transport-https \
-	code \
 	libasound2 \
 	libatk1.0-0 \
 	libcairo2 \
