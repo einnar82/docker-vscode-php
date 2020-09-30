@@ -17,8 +17,8 @@ RUN apt-get update && apt-get install -y \
 	--no-install-recommends
 
 # Add the vscode debian repo
-RUN curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
-RUN sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+RUN curl -sSL https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+RUN add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
 
 RUN apt-get update && apt-get -y install \
 	code \
