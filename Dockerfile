@@ -7,7 +7,6 @@ FROM php:7.3
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get install -y \
-	apt-transport-https \
 	bash \
 	ca-certificates \
 	curl \
@@ -17,10 +16,12 @@ RUN apt-get update && apt-get install -y \
 	--no-install-recommends
 
 # Add the vscode debian repo
-RUN curl -sSL https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
-RUN add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+RUN wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+RUN install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/
+RUN sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
 
 RUN apt-get update && apt-get -y install \
+	apt-transport-https \
 	code \
 	libasound2 \
 	libatk1.0-0 \
