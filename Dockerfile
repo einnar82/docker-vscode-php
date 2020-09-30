@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
 	gnupg \
 	git \
 	software-properties-common \
+	wget \
 	--no-install-recommends
 
 # Add the vscode debian repo
