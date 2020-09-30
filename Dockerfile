@@ -8,15 +8,17 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get install -y \
 	apt-transport-https \
+	bash \
 	ca-certificates \
 	curl \
 	gnupg \
 	git \
+	software-properties-common \
 	--no-install-recommends
 
 # Add the vscode debian repo
-RUN curl -sSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | apt-key add -
-RUN echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list
+RUN curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+RUN sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
 
 RUN apt-get update && apt-get -y install \
 	code \
