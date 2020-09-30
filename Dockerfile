@@ -14,7 +14,8 @@ RUN apt-get update && apt-get install -y \
 	git \
 	software-properties-common \
 	wget \
-	--no-install-recommends
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
 
 # Add the vscode debian repo
 RUN curl -o vscode.deb https://go.microsoft.com/fwlink/?LinkID=760868 
