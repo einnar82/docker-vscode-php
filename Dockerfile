@@ -38,6 +38,7 @@ RUN apt-get update && apt-get -y install \
 	libxext6 \
 	libxfixes3 \
 	libxi6 \
+	libxml2-dev \
 	libxrandr2 \
 	libxrender1 \
 	libxss1 \
