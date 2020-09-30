@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y \
 # Add the vscode debian repo
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 RUN mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
-RUN sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list
+RUN sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
 
 RUN apt-get update && apt-get -y install \
 	apt-transport-https \
